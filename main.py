@@ -5,7 +5,7 @@ from context_utils import check_quit, print_context, value_with_default
 from Choice import AskChoice
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
-from langchain_openai import ChatOpenAI
+from langchain_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage
 from StateTypes import GraphState
 import time
@@ -20,13 +20,16 @@ from ShowPlan import ShowPlan
 
 load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
+azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+azure_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+azure_key = os.getenv("AZURE_OPENAI_KEY")
+azure_api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
 
-llm = ChatOpenAI(
-    model_name="gpt-3.5-turbo",
-    temperature=0.7,
-    api_key=os.getenv("OPENAI_API_KEY"),
-    organization=None  # Explicitly set to None to ignore any organization settings
+llm = AzureChatOpenAI(
+    azure_endpoint=azure_endpoint,
+    deployment_name=azure_deployment,
+    openai_api_version=azure_api_version,
+    openai_api_key=azure_key,
 )
 
 # Build graph
