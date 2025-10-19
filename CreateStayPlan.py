@@ -38,7 +38,7 @@ responses in the specified data structure:
    - Required equipment not yet owned
    - Equipment acquisition timeline and sources
 
-2. **Where to Start** (record in: where_to_start)
+2. **When to Start** (record in: when_to_start)
    - Visual fire and smoke indicators
    - Official fire danger level thresholds
    - Environmental cues that trigger plan activation
